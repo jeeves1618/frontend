@@ -1,0 +1,136 @@
+To install liver server through NPM
+	npm install live-server -g - For Windows
+	sudo npm install live-server -g - For Mac
+
+To start the Live Server
+	live-server
+	
+DOM - Document Object Model is the structured representation of HTML documents. Allows JS and CSS to accesses HTML elements and styles to manipulate them.
+DOM is not part of JavaScript. It is part of WEB APIs.
+
+Basics of HTML
+	- classes and Ids
+	- Classes doesn't have to be unique. Ids have to be unique
+	- When you put form elements in a section, it makes sense to change div to form
+	
+Basics of CSS
+	- sytle sheet is linked through link and rel=stylesheet within HTML
+	- Standard HTML elements are accessed by their names within the style sheet. Example:  body {font-family : Arial }
+	- Classes are accessed through dot operator. Example: .first {font-family : Comic }
+	- Ids are accessed through # operator. Example: #first {font-family : Comic }
+	- if you are using document.getElementById, then no need for #. document.getElementById('id').innerHtml accepts objects. Whereas document.getElementById('id').textContent accepts only texts
+	- if you want to apply a style to all sections, use the * operator. * {font-family : Arial}
+	
+Back to JS
+	- Selecting an element in JavaScript - document.querySelector('.first') 
+	- JavaScript accesses HTML elements in the same way as CSS. 
+	- document.querySelector('.first') will give the value of the element identified by the class 'first'. To change the value, just assign the new value document.querySelector('.first') = 'New Value'
+	- To get the value use the textContent property. document.querySelector('.first').textContent will give the value 
+	- To get the value from a input field, use document.querySelector('.first').value
+	
+So far, we are not capturing any events from the web page.
+
+Handling Click Events
+	- In order to get the data from the text box on the click of the button (class = "btn two") by adding a listener for the action and function to do what needs to be done on that action. 
+	- Here we have a text box with the class boxer and a button with the class "btn two". We can access the data entered in the text box and display it in console log on the click of the button as below
+	document.querySelector('.two').addEventListener 
+	('click', function(){
+		console.log(document.querySelector('.boxer').value);
+		}
+
+The problem with querySelector:
+	if you have three buttons like these,	
+	<button class="show-modal">Show modal 1</button>
+    <button class="show-modal">Show modal 2</button>
+    <button class="show-modal">Show modal 3</button>
+
+	and you want to select them all, document.querySelector will not work. Because, it will select only the first button. So, you have to use document.querySelectorAll
+	
+	Remember that document.querySelectorAll('.someclass') is an array
+	
+Diagrams.net has the free flowcharting ability
+
+JS Engine:
+	JS Engine is the program that runs Javascript. Most popular one is V8. It also runs the NodeJS. Two major constituents of JS Engine Call Stack and Memory Heap.
+	Primitive variables are stored in call stack (execution context with in call stack) and the objects are stored in memory heap.
+	There are three ways of converting a high level programming language into a machine code.
+		1. Compilation: Entire code is converted into a machine code at once and written to a binary file that can be executed by a computer.
+		2. Inpretation: Interpretor runs through the code and executes it line by line
+		3. Just-In-Time (JIT) compilation: Entire code is converted into a machine code at once and then executed immediatly. JS is JIT compilation. The difference between Compilation and JIT are
+			a. Compilation and execution happens at different times during compilation. In JIT it happens immediatly.
+			b. The code is compiled once and executed many times during compilation. In JIT, code is compiled everytime before execution.
+			c. The compiled code is portable after compilation. In JIT the compiled code is not portable.
+	JS has only one main thread. So, it implements non blocking event loops to run back ground processes. 
+	Inside the JS Engine, an execution context is created. A global execution context is created for the top level code. Then an new execution context is created for functions and methods (functions are 
+	methods in objects)
+	All these execution contexts will make up the call stack. 
+
+Deeper look into Execution Context
+	Whats inside EC? Variable environment, Scope Chain and This keyword. 
+	The execution contexts created for Global program and individual functions are added to the call stack one above the other. The inner most function gets executed first.
+	
+Scope
+	Scope is not same as the scope of variable. 
+	Scoping is all about how the the variables (and functions) are organized and accessed.
+	If scoping is controlled by the placement in the functions and blocks, then the scoping is called Lexical scoping. In JS, the scoping is lexical in nature.
+	Scope, which comes under scoping, is the space in which a certain variable (or functions) is defined and can be accessed.
+	Scope of a variable is the region where a certain variable can be accessed. There are 3 different types of scope in JS: Global, Function and Block
+	Global variables are the ones declared outside of the functions.
+	Variables defined within the function using let, var and const are function scoped.
+	Variables defined within the block using let and const are block scoped. Variables declared with var are accessible even out side the block and within the function in which the block exists. 
+	So, Var defined within block is actually function scoped. 
+	Scope of variables extend to all outer scopes.
+	
+	The scope hierarchy is determined by the placement of functions within the code. It is not dependent on the the order in which those functions are called. 
+	
+Hoisting
+	It is the process of scanning of program for variable declarations before execution and create a new property in the variable environment in the execution context.
+	Only function declarations and var variables are hoisted. Let and Const variables are not. They live in a Temporal Dead Zone or TDZ.
+	Function expressions and arrow functions are hoisted or not based on whether they are defined with Var, Let or Const. So, we cannot use function expressions before we write them in the code. 
+	Function Expressions with Var will give the error: Uncaught TypeError: functionName is not a function
+	Function Expressions with Let or Const will give the error: Uncaught ReferenceError: Cannot access 'functionName' before initialization
+	But function declarations can be used before writing them because of hoisting. 
+	Hoisting can confuse things. So, use const whenever possible and let when you need to change the variable. 
+	
+This keyword
+	This keyword is used in four different ways in JS.
+	First, when used within a method (that is, a function within an object), this refers to the object. Or, more precisely, it refers to the object with which the method is called. 
+	Second, when used in a function, this refers to undefined in strict mode. Otherwise, this refers to the universal object of the browser called windows. 
+	Third, when used in an arrow function, this refers to the function in which arrow function is part of. Because, arrow functions do not get a this on their own. 
+	When an arrow function is defined in global scope, this refers to window. Remember, even if you define an arrow function inside the object, this of arrow function still refers to the window.
+	NEVER USE ARROW FUNCTION AS METHOD IN A OBJECT.
+	Fourth,  when used in an event listener, this refers to the DOM element the handle of the listener is attached to.
+
+	What This IS NOT
+		This does not point to a function or variable environment
+	
+Regular Vs Arrow Function
+
+	The keyword arguments exists only in regular functions. It returns an array of elements. For instance,
+	
+	const addNums = (x, y) {
+		console.log(arguments);
+		return x + y;
+	}
+	
+	When called with two parameters, addNums(1,2), the console,log will display Arguments(2) [1,2]
+	When called with more than two parameters, addNums(1,2,5,6), the console,log will display Arguments(4) [1,2,5,6]. The call will not fail.
+	
+	But, arrow functions do not have arguments keyword and they will fail if we are calling them with more number of arguments.
+	
+	
+Spread Operator
+	Spread operator is on the right side of the equal sign
+	Spread operator works on all iterables. That is on arrays, Strings, maps, sets. NOT objects.
+	Since ES6 spread operator is working on objects also. 
+	Spread operator is for unpacking an array or object.
+	
+Rest Pattern
+	Rest operator is on the left side of the equal sign
+	let [a, b, ...c] = [10, 20, 23, 45, 67, 78, 9];
+	console.log(`a = ${a} and b = ${b} and c = ${c}`); //will print a = 10 and b = 20 and c = 23,45,67,78,9
+	console.log(c[1]); //will print 45
+	Rest Patters is the opposite of spread operator. It packs stuff back to array. 
+	A function with REST pattern as parameter like add(...numbers) can take variable number of arguments.
+	
+Short Circuiting of ||

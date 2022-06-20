@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScript Fundamentals – Part 1</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h2>
+        Take Home Calculator
+        <hr />
+      </h2>
+    </div>
+    <h3>
+      <form id="frm1">
+        Please enter your annual gross salary :
+        <input type="number" class="grossSalaryEntered" value="0.0" />
+        <input
+          type="button"
+          class="calculateTakeHome"
+          value="Calculate Takehome"
+        />
+      </form>
+    </h3>
+    <div>
+      <table>
+        <col width="480" />
+        <col width="240" />
+        <th>Salary Component</th>
+        <th>Amount</th>
+        <tr>
+          <td>Gross Salary</td>
+          <td align="right"><p id="grossSalary"></p></td>
+        </tr>
+        <tr>
+          <td>Basic Salary</td>
+          <td align="right"><p id="basicSalary"></p></td>
+        </tr>
+        <tr>
+          <td>Retirals (PF)</td>
+          <td align="right"><p id="pf"></p></td>
+        </tr>
+        <tr>
+          <td>Tax Deduction</td>
+          <td align="right"><p id="monthlyTax"></p></td>
+        </tr>
+        <tr>
+          <td>Take Home</td>
+          <td align="right"><p id="monthlyTakeHome"></p></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script src="takehome.js"></script>
+</html>
